@@ -734,3 +734,8 @@ map <leader>a :A<CR>
 map <leader>as :AS<CR>
 map <leader>av :AV<CR>
 
+
+""""""""""""""""""""""""""""""
+" CtrlP setting
+""""""""""""""""""""""""""""""
+let g:ctrlp_max_files = 100000
