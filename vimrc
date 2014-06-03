@@ -149,10 +149,10 @@ nmap <leader>w :w!<cr>
 
 " Fast editing of the .vimrc
 if g:iswindows
-  map <leader>e :e! $VIM/_vimrc<cr>
+  map <leader>e :e! $VIM/vimrc<cr>
 
   " When vimrc is edited, reload it
-  autocmd! bufwritepost _vimrc source $VIM/_vimrc
+  autocmd! bufwritepost vimrc source $VIM/vimrc
 
   " Fast refresh helpstags
   map <leader>hh :helptags $VIM/vimfiles/doc<cr>
