@@ -34,8 +34,8 @@ if g:iswindows
     let vundlepath='$VIMRUNTIME/vimfiles/bundle/'
     call vundle#begin(vundlepath)
 else
-    set rtp+=~/.vim_runtime/bundle/Vundle.vim/
-    let vundlepath='~/.vim_runtime/bundle/'
+    set rtp+=~/.vim/vimfiles/bundle/Vundle.vim/
+    let vundlepath='~/.vim/vimfiles/bundle/'
     call vundle#begin(vundlepath)
 endif
 
@@ -105,7 +105,7 @@ Plugin 'majutsushi/tagbar'
 "Plugin 'ZoomWin'
 
 "支持Tag的代码高亮插件
-Plugin 'TagHighlight'
+"Plugin 'TagHighlight'
 
 "GIT 集成
 Plugin 'tpope/vim-fugitive'
@@ -157,13 +157,13 @@ if g:iswindows
   " Fast refresh helpstags
   map <leader>hh :helptags $VIM/vimfiles/doc<cr>
 else
-  map <leader>e :e! ~/.vim_runtime/vimrc<cr>
+  map <leader>e :e! ~/.vim/vimrc<cr>
 
   " When vimrc is edited, reload it
-  autocmd! bufwritepost vimrc source ~/.vim_runtime/vimrc
+  autocmd! bufwritepost vimrc source ~/.vim/vimrc
 
   " Fast refresh helpstags
-  map <leader>hh :helptags ~/.vim_runtime/doc<cr>
+  map <leader>hh :helptags ~/.vim/vimfiles/doc<cr>
 endif
 
 " Jump to the last position when reopaning a file
@@ -218,6 +218,7 @@ set wildmenu "Turn on WiLd menu
 
 set ruler "Always show current position
 
+set showcmd
 set cmdheight=2 "The commandbar height
 
 set hid "Change buffer - without saving
@@ -258,7 +259,8 @@ if g:iswindows
   "set gfn=PowerlineSymbols:h12
   set gfw=PowerlineSymbols:h11
 elseif g:islinux
-  set gfn=Monospace\ 10
+  set gfn=Droid\ Sans\ Mono\ 11,AR\ PL\ UMing\ CN\ 12
+  set gfw=PowerlineSymbols\ Medium\ 11
   set shell=/bin/bash
 endif
 
@@ -268,6 +270,9 @@ if g:isgui
     set lines=999
     ":autocmd VimEnter * winpos 0 0	" -20 for hidden windows title bar
     :autocmd VimEnter * simalt ~x	" simule Alt+<SPACE> x
+  else
+    autocmd VimEnter * set columns=121
+    autocmd VimEnter * set lines=39
   endif
   set guioptions-=r
   set guioptions-=L
@@ -319,7 +324,7 @@ try
     if g:iswindows
       set undodir=$Temp
     else
-      set undodir=~/.vim_runtime/undodir
+      set undodir=~/.vim/undodir
     endif
 
     set undofile
@@ -651,9 +656,9 @@ vnoremap <leader>sh <c-v>:sort iu /^\s*\(virtual\s\+\\|const\s\+\\|:\\|,\\|.*\)\
 nnoremap <leader>tb :%s/\s\+$//<cr>:nohl<cr>                    " 清除行尾空格
 
 " Fast clipboard access
-noremap <leader>y "*y
-noremap <leader>p "*p
-noremap <leader>P "*P
+noremap <leader>y "+y
+noremap <leader>p "+p
+noremap <leader>P "+P
 
 
 """"""""""""""""""""""""""""""
