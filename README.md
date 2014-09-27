@@ -29,23 +29,23 @@ myvimconf
 ##Linux
 
   cd ~
-  
+
   mkdir .vim
-  
+
   cd .vim
-  
+
   git clone https://github.com/kendling/myvimconf.git
-  
+
   cd myvimconf
-  
+
   ls -A | xargs mv --target-directory=..
-  
+
   cd ..
-  
+
   rmdir myvimconf
 
   git submodule update --init
 
   cd vimfiles/bundle/YouCompleteMe/
 
-  ./install.sh --clang-complete
+  ./install.sh --clang-completer
