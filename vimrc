@@ -155,7 +155,7 @@ if g:iswindows
   autocmd! bufwritepost vimrc source $VIM/vimrc
 
   " Fast refresh helpstags
-  map <leader>hh :helptags $VIM/vimfiles/doc<cr>
+  map <leader>hh :helptags $VIM/doc<cr>
 else
   map <leader>e :e! ~/.vim/vimrc<cr>
 
@@ -163,7 +163,7 @@ else
   autocmd! bufwritepost vimrc source ~/.vim/vimrc
 
   " Fast refresh helpstags
-  map <leader>hh :helptags ~/.vim/vimfiles/doc<cr>
+  map <leader>hh :helptags ~/.vim/doc<cr>
 endif
 
 " Jump to the last position when reopaning a file
@@ -254,13 +254,10 @@ syntax enable "Enable syntax hl
 
 " Set font according to system
 if g:iswindows
-  "set gfn=Bitstream\ Vera\ Sans\ Mono:h10
-  "set gfw=Droid\ Sans\ Mono\ for\ Powerline:h11
-  "set gfn=PowerlineSymbols:h12
   set gfw=PowerlineSymbols:h11
 elseif g:islinux
-  set gfn=Droid\ Sans\ Mono\ 11,AR\ PL\ UMing\ CN\ 12
-  set gfw=PowerlineSymbols\ Medium\ 11
+  set gfn=Droid\ Sans\ Mono\ 11
+  set gfw=PowerlineSymbols\ Medium\ 12,AR\ PL\ UMing\ CN\ 12
   set shell=/bin/bash
 endif
 
@@ -287,11 +284,15 @@ else
 endif
 set nonu "No line number
 
-set ambiwidth=double
+if g:iswindows
+  set ambiwidth=double
+endif
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=ucs-bom,utf-8,ucs-2,chinese,latin1
-set termencoding=chinese
+if !g:isgui
+  set termencoding=chinese
+endif
 
 set langmenu=zh_cn
 try
