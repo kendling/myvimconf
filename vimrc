@@ -289,9 +289,13 @@ if g:iswindows
 endif
 set encoding=utf-8
 set fileencoding=utf-8
-set fileencodings=ucs-bom,utf-8,ucs-2,chinese,latin1
+set fileencodings=chinese,ucs-bom,utf-8,ucs-2,latin1
 if !g:isgui
-  set termencoding=chinese
+  if g:iswindows
+    set termencoding=chinese
+  else
+    set termencoding=utf8
+  endif
 endif
 
 set langmenu=zh_cn
