@@ -46,7 +46,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'a.vim'
 
 "相较于Command-T等查找文件的插件，ctrlp.vim最大的好处在于没有依赖，干净利落
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 "更快的搜索工具
 "Windows 下效率慢
@@ -56,7 +56,7 @@ Plugin 'kien/ctrlp.vim'
 "Plugin 'AutoClose'
 
 "目前最好用的代码高亮插件，支持
-Plugin 'EasyColour'
+Plugin 'kendling/EasyColour'
 
 "神级插件，Emmet-vim可以让你以一种神奇而无比爽快的感觉写HTML、CSS
 Plugin 'mattn/emmet-vim'
@@ -71,7 +71,7 @@ Plugin 'ShowTrailingWhitespace'
 Plugin '_jsbeautify'
 
 "用全新的方式在文档中高效的移动光标，革命性的突破
-Plugin 'EasyMotion'
+Plugin 'easymotion/vim-easymotion'
 
 "自动识别文件编码；
 Plugin 'mbbill/FencView'
@@ -105,7 +105,7 @@ Plugin 'majutsushi/tagbar'
 "Plugin 'ZoomWin'
 
 "支持Tag的代码高亮插件
-"Plugin 'TagHighlight'
+Plugin 'kendling/TagHighlight'
 
 "GIT 集成
 Plugin 'tpope/vim-fugitive'
@@ -117,6 +117,11 @@ Plugin 'Valloric/YouCompleteMe'
 
 "语法错误检测
 Plugin 'scrooloose/syntastic'
+
+"Visual Studi 交互
+if g:iswindows
+    Plugin 'kendling/visual_studio.vim'
+endif
 
 call vundle#end(vundlepath)
 
@@ -155,7 +160,7 @@ if g:iswindows
   autocmd! bufwritepost vimrc source $VIM/vimrc
 
   " Fast refresh helpstags
-  map <leader>hh :helptags $VIM/doc<cr>
+  map <leader>hh :helptags $VIM/vimfiles/doc<cr>
 else
   map <leader>e :e! ~/.vim/vimrc<cr>
 
@@ -218,7 +223,6 @@ set wildmenu "Turn on WiLd menu
 
 set ruler "Always show current position
 
-set showcmd
 set cmdheight=2 "The commandbar height
 
 set hid "Change buffer - without saving
@@ -254,11 +258,10 @@ syntax enable "Enable syntax hl
 
 " Set font according to system
 if g:iswindows
-  set gfw=PowerlineSymbols:h11
+  set gfn=Droid_Sans_Mono_for_Powerline:h11
+  set rop=type:directx
 elseif g:islinux
-  set gfn=Droid\ Sans\ Mono\ 11
-  set gfw=PowerlineSymbols\ Medium\ 12,AR\ PL\ UMing\ CN\ 12
-  set shell=/bin/bash
+  set gfn=Droid\ Sans\ Mono\ for\ Powerline\ 11
 endif
 
 if g:isgui
@@ -284,9 +287,6 @@ else
 endif
 set nonu "No line number
 
-if g:iswindows
-  set ambiwidth=double
-endif
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=chinese,ucs-bom,utf-8,ucs-2,latin1
@@ -312,8 +312,6 @@ endif
 "let $LANG = 'zh_CN.UTF-8'
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
-
-set ffs=dos,unix,mac "Default file types
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -678,12 +676,10 @@ endif
 """"""""""""""""""""""""""""""
 " Easy colour setting
 """"""""""""""""""""""""""""""
-if !exists('g:TagHighlightSettings')
+if ! exists('g:TagHighlightSettings')
     let g:TagHighlightSettings = {}
 endif
-let b:TagHighlightSettings = 1
 "let g:plugin_development_mode = 1
-"let g:TagHighlightSettings['TagFileName'] = VimSetting() . 'tags'
 let g:TagHighlightSettings['TagFileName'] = 'tags'
 let g:TagHighlightSettings['CtagsExecutable'] = 'ctags'
 "let g:TagHighlightSettings['SourceDir'] = '../'
