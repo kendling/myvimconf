@@ -668,9 +668,24 @@ noremap <leader>P "+P
 " Tagbar (ctags)
 """"""""""""""""""""""""""""""
 "let g:tagbar_autoshowtag = 1
+let g:tagbar_autofocus = 1
+nnoremap <silent> <F9> :TagbarToggle<CR>
+
 if g:iswindows
   let g:tagbar_systemenc = 'cp936'
 endif
+
+" GO 语言支持
+let g:tagbar_type_go = {
+    \ 'ctagstype': 'go',
+    \ 'kinds' : [
+        \'p:package',
+        \'f:function',
+        \'v:variables',
+        \'t:type',
+        \'c:const'
+    \]
+\}
 
 
 """"""""""""""""""""""""""""""
@@ -708,13 +723,6 @@ let g:airline#extensions#tabline#enabled = 1
 " NERDTree setting
 """"""""""""""""""""""""""""""
 nmap <F2> :NERDTreeToggle<CR>
-
-""""""""""""""""""""""""""""""
-" Tagbar setting
-""""""""""""""""""""""""""""""
-if g:isgui
-  autocmd VimEnter * nested :TagbarOpen
-endif
 
 
 """"""""""""""""""""""""""""""
