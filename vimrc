@@ -752,4 +752,10 @@ map <leader>av :AV<CR>
 """"""""""""""""""""""""""""""
 " CtrlP setting
 """"""""""""""""""""""""""""""
-let g:ctrlp_max_files = 100000
+let g:ctrlp_max_files = 0
+
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll|pdb|lib|ilk|mp3|obj|user|suo|sdf|pyc|opensdf|dat' .
+  \         '|pak|exp|bin|png|jpg|gif)$',
+  \ }
